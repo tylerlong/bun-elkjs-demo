@@ -1,5 +1,4 @@
 import ELK from "elkjs";
-import Worker from "web-worker";
 
 const graph = {
   id: "root",
@@ -16,10 +15,11 @@ const graph = {
 };
 
 const generate = async (graph) => {
-  const worker = new Worker(require.resolve("elkjs/lib/elk-worker.js"));
-  const elk = new ELK({ workerFactory: () => worker });
+  const elk = new ELK({
+    workerUrl: require.resolve("elkjs/lib/elk-worker.js"),
+  });
   const r = await elk.layout(graph);
-  worker.terminate();
+  elk.terminateWorker();
   console.log(r);
 };
 

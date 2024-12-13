@@ -4,4 +4,4 @@ If we run the official sample directly: `TypeError: undefined is not a construct
 
 If works if we manually specify the worker, but it won't exit. Ref: https://github.com/kieler/elkjs/issues/315
 
-I need to manually invoke `worker.terminate()`.
+I need to manually invoke `worker.terminate()`. But if we termiate worker, we cannot `elk.layout` any more.
